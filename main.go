@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"jsonfile/note/note"
+	"os"
+	"strings"
 )
 
 func main() {
@@ -12,6 +15,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	userNote.Display()
 }
 
 func getNodeData() (string, string) {
@@ -22,9 +26,19 @@ func getNodeData() (string, string) {
 	return title, content
 }
 func getUserInput(prompt string) string {
-	fmt.Println(prompt)
-	var input string
-	fmt.Scanln(&input)
+	fmt.Println("%v ", prompt)
+	reader := bufio.NewReader(os.Stdin)
+	text, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	text = strings.TrimSuffix(text, "\n")
+	text = strings.TrimSuffix(text, "\r")
+	// Checks only the last character of the string
+	text = strings.TrimSuffix(text, "_world")
 
-	return input
+	//Short Cut to Trim the Spaces
+	// text = strings.TrimSpace(text)
+	return text
 }
