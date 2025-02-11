@@ -10,9 +10,9 @@ import (
 )
 
 type Note struct {
-	Title     string
-	Content   string
-	CreatedAt time.Time
+	Title     string    `json:"title"`
+	Content   string    `json:"content"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 func (note Note) Display() {
@@ -34,7 +34,7 @@ func (note Note) Save() error {
 
 func New(title, content string) (Note, error) {
 	if title == "" || content == "" {
-		return Note{}, errors.New("Input cannot be empty")
+		return Note{}, errors.New("input cannot be empty")
 	}
 
 	return Note{
