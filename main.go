@@ -16,6 +16,12 @@ func main() {
 		return
 	}
 	userNote.Display()
+	err = userNote.Save()
+	if err != nil {
+		fmt.Println("Saving the note failed", err)
+		return
+	}
+	fmt.Println("Note saved successfully")
 }
 
 func getNodeData() (string, string) {
@@ -26,7 +32,7 @@ func getNodeData() (string, string) {
 	return title, content
 }
 func getUserInput(prompt string) string {
-	fmt.Println("%v ", prompt)
+	fmt.Printf("%v ", prompt)
 	reader := bufio.NewReader(os.Stdin)
 	text, err := reader.ReadString('\n')
 	if err != nil {
