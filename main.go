@@ -4,12 +4,26 @@ import (
 	"bufio"
 	"fmt"
 	"jsonfile/note/note"
+	"jsonfile/note/todo"
 	"os"
 	"strings"
 )
 
 func main() {
 	title, content := getNodeData()
+	todoText := getUserInput("Todo text:")
+	todo, err := todo.New(todoText)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	todo.Display()
+	err = todo.Save()
+	if err != nil {
+		fmt.Println("Saving the todo failed", err)
+		return
+	}
+	fmt.Println("Todo saved successfully")
 	userNote, err := note.New(title, content)
 	if err != nil {
 		fmt.Println(err)
