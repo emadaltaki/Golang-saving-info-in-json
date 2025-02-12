@@ -9,6 +9,11 @@ import (
 	"strings"
 )
 
+// NOTE IF THE INTERFACE HAS ONLY ONE METHOD THEN U CALLED THE INTERFACE AS THE METHOD NAME + ER
+type saver interface {
+	Save() error
+}
+
 func main() {
 	title, content := getNodeData()
 	todoText := getUserInput("Todo text:")
