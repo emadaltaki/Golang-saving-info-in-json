@@ -13,6 +13,13 @@ import (
 type saver interface {
 	Save() error
 }
+type displayer interface {
+	Display()
+}
+type outputtable interface {
+	saver
+	displayer
+}
 
 func main() {
 	title, content := getNodeData()
@@ -22,8 +29,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	todo.Display()
-	err = saveData(todo)
+	err = outputData(todo)
 	if err != nil {
 		return
 	}
@@ -32,12 +38,15 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	userNote.Display()
-	err = saveData(userNote)
+	err = outputData(userNote)
 	if err != nil {
 		return
 	}
 
+}
+func outputData(data outputtable) error {
+	data.Display()
+	return saveData(data)
 }
 func saveData(data saver) error {
 	err := data.Save()
