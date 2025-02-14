@@ -47,19 +47,36 @@ func main() {
 
 // can pass any type of data
 func printSomething(value interface{}) {
-	switch value.(type) {
-	case int:
-		fmt.Println("This is an integer")
-	case string:
-		fmt.Println("This is a string")
-	case bool:
-		fmt.Println("This is a boolean")
-	case float64:
-		fmt.Println("This is a float")
-	default:
-		fmt.Println("Unknown type")
+	// added a type
+	// switch value.(type) {
+	// case int:
+	// 	fmt.Println("This is an integer")
+	// case string:
+	// 	fmt.Println("This is a string")
+	// case bool:
+	// 	fmt.Println("This is a boolean")
+	// case float64:
+	// 	fmt.Println("This is a float")
+	// default:
+	// 	fmt.Println("Unknown type")
+	// }
+	// fmt.Println(value)
+
+	// make the variable typed and check its type
+	intVal, ok := value.(int)
+	if ok {
+		intVal = intVal + 1
 	}
-	fmt.Println(value)
+
+	sttringVal, ok := value.(string)
+	if ok {
+		sttringVal = sttringVal + " world"
+	}
+
+	floatVal, ok := value.(float64)
+	if ok {
+		floatVal = floatVal + 0.1
+	}
 
 }
 func outputData(data outputtable) error {

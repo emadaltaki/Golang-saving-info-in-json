@@ -18,6 +18,7 @@ func (todo Todo) Display() {
 func (todo Todo) Save() error {
 	fileName := "todo.json"
 	json, err := json.Marshal(todo)
+
 	if err != nil {
 
 		return err
