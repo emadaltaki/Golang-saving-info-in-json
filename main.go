@@ -44,6 +44,24 @@ func main() {
 	}
 
 }
+
+// can pass any type of data
+func printSomething(value interface{}) {
+	switch value.(type) {
+	case int:
+		fmt.Println("This is an integer")
+	case string:
+		fmt.Println("This is a string")
+	case bool:
+		fmt.Println("This is a boolean")
+	case float64:
+		fmt.Println("This is a float")
+	default:
+		fmt.Println("Unknown type")
+	}
+	fmt.Println(value)
+
+}
 func outputData(data outputtable) error {
 	data.Display()
 	return saveData(data)
