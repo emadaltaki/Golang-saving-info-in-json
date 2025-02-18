@@ -3,8 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"jsonfile/note/note"
-	"jsonfile/note/todo"
 	"os"
 	"strings"
 )
@@ -22,27 +20,33 @@ type outputtable interface {
 }
 
 func main() {
-	title, content := getNodeData()
-	todoText := getUserInput("Todo text:")
-	todo, err := todo.New(todoText)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	err = outputData(todo)
-	if err != nil {
-		return
-	}
-	userNote, err := note.New(title, content)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	err = outputData(userNote)
-	if err != nil {
-		return
-	}
-
+	// title, content := getNodeData()
+	// todoText := getUserInput("Todo text:")
+	// todo, err := todo.New(todoText)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// err = outputData(todo)
+	// if err != nil {
+	// 	return
+	// }
+	// userNote, err := note.New(title, content)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// err = outputData(userNote)
+	// if err != nil {
+	// 	return
+	// }
+	a := 1
+	b := 2
+	add(&a, &b)
+	fmt.Println(a)
+}
+func add[T int | string | float64](a, b *T) {
+	*a = *a + *b
 }
 
 // can pass any type of data
@@ -63,6 +67,7 @@ func printSomething(value interface{}) {
 	// fmt.Println(value)
 
 	// make the variable typed and check its type
+
 	intVal, ok := value.(int)
 	if ok {
 		intVal = intVal + 1
